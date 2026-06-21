@@ -1,0 +1,282 @@
+/* ===== Theme ===== */
+:root{
+  --bg:#fdf8f6;
+  --bg-card:#fffdfc;
+  --ink:#5a4a4a;
+  --muted:#a08e8e;
+  --gold:#c79b8a;        /* blush rose-gold (сәукеле түсіне үйлеседі) */
+  --gold-deep:#a9786c;
+  --line:#efe1dc;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:"Montserrat",system-ui,sans-serif;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-weight:300;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ===== Hero ===== */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  /* Фон: гүлді сурет (images/bg.jpg) */
+  background:url("images/bg.jpg") center/cover no-repeat, #fff;
+  color:var(--ink);
+  padding:3rem 1.5rem;
+}
+.hero__content{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center}
+.hero__eyebrow{
+  font-size:.82rem;letter-spacing:.45em;font-weight:500;
+  color:var(--gold-deep);margin-bottom:1rem;text-transform:uppercase;
+}
+.hero__name{
+  font-family:var(--serif);
+  font-size:clamp(3rem,15vw,6rem);
+  font-weight:500;line-height:1;color:var(--ink);
+}
+.hero__photo{
+  width:min(62vw,260px);height:auto;margin:1.6rem 0 .4rem;
+  filter:drop-shadow(0 12px 30px rgba(169,120,108,.28));
+}
+.hero__divider{margin:1rem 0 .8rem;font-size:1.2rem;color:var(--gold)}
+.hero__date{font-size:1rem;letter-spacing:.12em;font-weight:500;color:var(--gold-deep)}
+.hero__scroll{
+  position:absolute;bottom:1.6rem;left:50%;transform:translateX(-50%);
+  font-size:2rem;z-index:1;animation:bounce 2s infinite;opacity:.7;color:var(--gold-deep);
+}
+@keyframes bounce{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,10px)}}
+
+/* ===== Sections ===== */
+.section{
+  max-width:640px;margin:0 auto;
+  padding:4.5rem 1.5rem;text-align:center;
+}
+.invite__sub{
+  font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold-deep);margin-bottom:1.4rem;
+}
+.invite__hello{
+  font-family:var(--serif);font-size:1.9rem;color:var(--gold-deep);
+  margin-bottom:1.1rem;
+}
+.invite__text{font-size:1.05rem;color:var(--muted);max-width:30rem;margin:0 auto}
+
+.hosts{padding-top:1rem;padding-bottom:1rem}
+.hosts__label{font-size:.8rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.hosts__names{font-family:var(--serif);font-size:1.9rem;color:var(--ink);margin-top:.4rem;line-height:1.3}
+.hosts__note{font-size:1rem;color:var(--muted);max-width:28rem;margin:1.4rem auto 0;font-style:italic}
+
+/* ===== Countdown ===== */
+.countdown__label{font-size:.85rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);margin-bottom:1.6rem}
+.countdown__grid{display:flex;justify-content:center;gap:.6rem;flex-wrap:wrap}
+.cd{
+  background:var(--bg-card);border:1px solid var(--line);
+  border-radius:14px;padding:1rem .4rem;min-width:74px;
+  box-shadow:0 6px 20px rgba(150,120,80,.08);
+}
+.cd__num{display:block;font-family:var(--serif);font-size:2.4rem;color:var(--gold-deep);line-height:1}
+.cd__unit{display:block;font-size:.72rem;letter-spacing:.1em;color:var(--muted);margin-top:.4rem;text-transform:uppercase}
+
+/* ===== When ===== */
+.when__card{
+  background:var(--bg-card);border:1px solid var(--line);border-radius:18px;
+  padding:2.2rem;display:inline-block;box-shadow:0 8px 30px rgba(150,120,80,.1);
+}
+.when__label{font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
+.when__big{font-family:var(--serif);font-size:2rem;color:var(--ink)}
+.when__time{font-size:1.2rem;color:var(--gold-deep);margin-top:.5rem;letter-spacing:.05em}
+
+/* ===== Calendar ===== */
+.calendar{margin-top:1.6rem;border-top:1px solid var(--line);padding-top:1.2rem}
+.cal__title{font-family:var(--serif);font-size:1.25rem;color:var(--gold-deep);text-transform:capitalize;margin-bottom:.8rem}
+.cal__grid{display:grid;grid-template-columns:repeat(7,1fr);gap:.25rem}
+.cal__dow{font-size:.7rem;color:var(--muted);font-weight:500;padding:.3rem 0;text-transform:uppercase}
+.cal__day{font-size:.9rem;color:var(--ink);padding:.45rem 0;border-radius:50%}
+.cal__day--mark{background:var(--gold);color:#fff;font-weight:600;box-shadow:0 4px 12px rgba(199,155,138,.45)}
+
+/* ===== Place ===== */
+.place__label{font-size:.8rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.place__venue{font-family:var(--serif);font-size:1.9rem;font-weight:500;margin:.5rem 0 .3rem}
+.place__address{color:var(--muted);margin-bottom:1.6rem}
+
+/* ===== Buttons ===== */
+.btn{
+  display:inline-block;background:var(--gold);color:#fff;
+  border:none;border-radius:40px;padding:.85rem 2.2rem;
+  font-family:var(--sans);font-size:.85rem;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;text-decoration:none;
+  cursor:pointer;transition:background .25s,transform .15s;
+}
+.btn:hover{background:var(--gold-deep);transform:translateY(-2px)}
+.btn--full{width:100%;margin-top:.6rem}
+.btn--map{display:inline-flex;align-items:center;gap:.5rem}
+.btn__pin{font-size:1rem;line-height:1}
+
+/* ===== RSVP ===== */
+.rsvp__label{font-family:var(--serif);font-size:1.7rem;color:var(--gold-deep);margin-bottom:.6rem}
+.rsvp__desc{font-size:.95rem;color:var(--muted);max-width:26rem;margin:0 auto 1.6rem}
+.rsvp__hint{font-size:.8rem;color:var(--muted);text-align:left;margin:-.3rem .2rem .3rem;font-style:italic}
+.rsvp__form{display:flex;flex-direction:column;gap:1rem;max-width:24rem;margin:0 auto}
+.rsvp__input{
+  padding:.9rem 1.1rem;border:1px solid var(--line);border-radius:12px;
+  font-family:var(--sans);font-size:1rem;background:var(--bg-card);color:var(--ink);
+}
+.rsvp__input:focus{outline:none;border-color:var(--gold)}
+.rsvp__options{display:flex;flex-direction:column;gap:.6rem;text-align:left}
+.opt{
+  display:flex;align-items:center;gap:.7rem;padding:.85rem 1.1rem;
+  border:1px solid var(--line);border-radius:12px;cursor:pointer;
+  background:var(--bg-card);font-size:.82rem;letter-spacing:.05em;transition:border-color .2s;
+}
+.opt:has(input:checked){border-color:var(--gold);background:#fdf6ea}
+.opt input{accent-color:var(--gold);width:18px;height:18px}
+
+.rsvp__count{display:flex;align-items:center;justify-content:space-between;
+  padding:.6rem 1.1rem;border:1px solid var(--line);border-radius:12px;background:var(--bg-card)}
+.counter{display:flex;align-items:center;gap:1rem}
+.counter__btn{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);
+  background:#fff;font-size:1.2rem;color:var(--gold-deep);cursor:pointer;line-height:1}
+.counter__btn:hover{background:var(--gold);color:#fff}
+.counter__val{font-size:1.2rem;min-width:1.5rem;text-align:center}
+
+/* ===== Footer ===== */
+.footer{text-align:center;padding:3rem 1.5rem 4rem;color:var(--muted)}
+.footer__divider{margin-top:1rem;color:var(--gold);font-size:1.2rem}
+
+/* ===== Intro / envelope ===== */
+.intro{
+  position:fixed;inset:0;z-index:100;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.4rem;
+  background:radial-gradient(circle at 50% 35%,#fff 0%,#fbeee9 55%,#f3ddd6 100%);
+  cursor:pointer;transition:opacity .9s ease,transform .9s ease;
+}
+.intro.is-open{opacity:0;transform:scale(1.08);pointer-events:none}
+.intro__env{
+  position:relative;width:170px;height:118px;border-radius:10px;
+  background:linear-gradient(#fffdfc,#f7e9e3);
+  box-shadow:0 18px 50px rgba(169,120,108,.3);border:1px solid #efd9d1;
+}
+.intro__env::before{ /* конверт қалтасының сызығы */
+  content:"";position:absolute;inset:0;border-radius:10px;
+  background:linear-gradient(135deg,transparent 49%,#efd9d1 49.5%,#efd9d1 50.5%,transparent 51%),
+             linear-gradient(225deg,transparent 49%,#efd9d1 49.5%,#efd9d1 50.5%,transparent 51%);
+  background-size:100% 60%;background-repeat:no-repeat;background-position:bottom;opacity:.6;
+}
+.intro__flap{
+  position:absolute;top:0;left:0;right:0;height:60px;
+  background:linear-gradient(#f7e3db,#f0d4cb);
+  clip-path:polygon(0 0,100% 0,50% 100%);
+  border-radius:10px 10px 0 0;transform-origin:top;
+  transition:transform .6s ease;z-index:2;
+}
+.intro.is-open .intro__flap{transform:rotateX(180deg)}
+.intro__seal{
+  position:absolute;top:46px;left:50%;transform:translateX(-50%);z-index:3;
+  width:46px;height:46px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#d6a896,#a9786c);
+  color:#fff;font-family:var(--serif);font-size:1.5rem;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 12px rgba(169,120,108,.5);
+  animation:sealPulse 2s ease-in-out infinite;
+}
+@keyframes sealPulse{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.08)}}
+.intro__name{font-family:var(--serif);font-size:2.4rem;color:var(--gold-deep)}
+.intro__hint{font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
+/* ===== Petals ===== */
+.petals{position:fixed;inset:0;z-index:40;pointer-events:none;overflow:hidden}
+.petal{
+  position:absolute;top:-30px;
+  width:14px;height:14px;
+  background:radial-gradient(circle at 30% 30%,#fff,#f4c9be 70%,#e8a799);
+  border-radius:80% 0 80% 0;opacity:.8;
+  animation:fall linear forwards;
+}
+@keyframes fall{
+  0%{transform:translateY(0) rotate(0);opacity:.85}
+  100%{transform:translateY(105vh) rotate(540deg);opacity:0}
+}
+
+/* ===== Soft button ===== */
+.btn--soft{
+  margin-top:1.4rem;background:transparent;color:var(--gold-deep);
+  border:1px solid var(--gold);box-shadow:none;
+}
+.btn--soft:hover{background:var(--gold);color:#fff}
+
+/* ===== Hero name shimmer ===== */
+.hero__name{
+  background:linear-gradient(100deg,var(--ink) 30%,var(--gold) 50%,var(--ink) 70%);
+  background-size:200% auto;-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:shimmer 5s linear infinite;
+}
+@keyframes shimmer{to{background-position:200% center}}
+
+/* ===== Confetti ===== */
+.confetti{position:fixed;inset:0;z-index:90;pointer-events:none;overflow:hidden}
+.conf{position:absolute;top:-24px;font-size:1.1rem;will-change:transform;animation:confFall linear forwards}
+.conf--piece{width:10px;height:14px;border-radius:2px}
+@keyframes confFall{
+  0%{transform:translateY(0) rotate(0);opacity:1}
+  100%{transform:translateY(108vh) rotate(720deg);opacity:.9}
+}
+
+/* ===== Thank-you overlay ===== */
+.thanks{
+  position:fixed;inset:0;z-index:95;display:none;
+  align-items:center;justify-content:center;padding:1.5rem;
+  background:rgba(90,74,74,.35);backdrop-filter:blur(4px);
+}
+.thanks.is-show{display:flex;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.thanks__card{
+  background:var(--bg-card);border-radius:22px;padding:2.4rem 2rem;
+  text-align:center;max-width:22rem;box-shadow:0 20px 60px rgba(90,74,74,.3);
+  animation:pop .45s cubic-bezier(.2,1.3,.4,1);
+}
+@keyframes pop{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
+.thanks__emoji{font-size:2.6rem;margin-bottom:.6rem}
+.thanks__title{font-family:var(--serif);font-size:2rem;color:var(--gold-deep);margin-bottom:.5rem}
+.thanks__text{color:var(--muted);font-size:1.02rem;line-height:1.6}
+
+/* ===== Tilek ===== */
+.tilek__label{font-size:.8rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem}
+.tilek__card{
+  background:var(--bg-card);border:1px solid var(--line);border-radius:18px;
+  padding:2rem 1.6rem;max-width:30rem;margin:0 auto;min-height:5.5rem;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:1.35rem;color:var(--ink);line-height:1.5;
+  box-shadow:0 8px 26px rgba(169,120,108,.1);transition:transform .25s;
+}
+.tilek__card.is-flip{animation:flip .5s ease}
+@keyframes flip{0%{transform:rotateX(90deg);opacity:0}100%{transform:rotateX(0);opacity:1}}
+
+/* ===== Music toggle ===== */
+.music-toggle{
+  position:fixed;top:1rem;right:1rem;z-index:50;
+  width:46px;height:46px;border-radius:50%;
+  border:1px solid var(--line);background:rgba(255,253,252,.85);
+  backdrop-filter:blur(6px);color:var(--gold-deep);
+  font-size:1.3rem;cursor:pointer;line-height:1;
+  box-shadow:0 4px 14px rgba(169,120,108,.2);transition:transform .2s;
+}
+.music-toggle:hover{transform:scale(1.08)}
+.music-toggle.is-playing{animation:spin 4s linear infinite;background:var(--gold);color:#fff}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ===== Reveal animation ===== */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
+.reveal.is-visible{opacity:1;transform:none}
+.hero.reveal{opacity:1;transform:none} /* hero көрінбей қалмасын */

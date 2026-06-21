@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alema — Қыз ұзату тойына шақыру</title>
+  <meta name="description" content="Алеманың қыз ұзату тойына шақыру" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===== INTRO / ENVELOPE ===== -->
+  <div id="intro" class="intro">
+    <div class="intro__env">
+      <div class="intro__flap"></div>
+      <div class="intro__seal" data-cfg="introInitial">A</div>
+    </div>
+    <p class="intro__name" data-cfg="introName">Alema</p>
+    <p class="intro__hint" data-cfg="introHint">Шақыруды ашу үшін басыңыз</p>
+  </div>
+
+  <!-- petals layer -->
+  <div id="petals" class="petals"></div>
+
+  <!-- confetti layer -->
+  <div id="confetti" class="confetti"></div>
+
+  <!-- thank-you overlay -->
+  <div id="thanks" class="thanks">
+    <div class="thanks__card">
+      <div class="thanks__emoji">🎉</div>
+      <p class="thanks__title" id="thanksTitle">Рақмет!</p>
+      <p class="thanks__text" id="thanksText"></p>
+    </div>
+  </div>
+
+  <!-- ===== MUSIC ===== -->
+  <audio id="bgMusic" src="music.mp3" loop preload="auto"></audio>
+  <button id="musicToggle" class="music-toggle" aria-label="Музыка">♪</button>
+
+  <!-- ===== HERO ===== -->
+  <header class="hero reveal">
+    <div class="hero__content">
+      <h1 class="hero__name" data-cfg="heroName">Alema</h1>
+      <p class="hero__eyebrow" data-cfg="eventType">QYZ UZATU</p>
+      <img class="hero__photo" src="images/saukele.jpg" alt="Сәукеле" />
+      <p class="hero__date" data-cfg="heroDate">15.08.2026</p>
+    </div>
+    <div class="hero__scroll">⌄</div>
+  </header>
+
+  <!-- ===== INVITE TEXT ===== -->
+  <section class="section invite reveal">
+    <p class="invite__sub" data-cfg="inviteTitle">Қыз ұзату тойына шақыру</p>
+    <p class="invite__hello" data-cfg="greeting">Құрметті қонақтар</p>
+    <p class="invite__text" data-cfg="inviteText">
+      Сіздерді аяулы қызымыз Алеманың ұзату тойына арналған ақ
+      дастарханымыздың қадірлі қонағы болуға шақырамыз.
+    </p>
+  </section>
+
+  <!-- ===== DATE / TIME + CALENDAR ===== -->
+  <section class="section when reveal">
+    <div class="when__card">
+      <p class="when__label" data-cfg="whenLabel">Той салтанаты</p>
+      <p class="when__big" data-cfg="whenDate">15 тамыз 2026 жыл</p>
+      <p class="when__time" data-cfg="whenTime">🕐 18:00</p>
+      <div class="calendar" id="calendar"></div>
+      <button class="btn btn--soft" id="addToCal" type="button" data-cfg="addCalText">Күнтізбеге қосу</button>
+    </div>
+  </section>
+
+  <!-- ===== COUNTDOWN ===== -->
+  <section class="section countdown reveal">
+    <p class="countdown__label" data-cfg="countdownLabel">Той салтанатына дейін</p>
+    <div class="countdown__grid" id="countdown">
+      <div class="cd"><span class="cd__num" id="cd-days">00</span><span class="cd__unit" data-cfg="uDays">күн</span></div>
+      <div class="cd"><span class="cd__num" id="cd-hours">00</span><span class="cd__unit" data-cfg="uHours">сағат</span></div>
+      <div class="cd"><span class="cd__num" id="cd-min">00</span><span class="cd__unit" data-cfg="uMin">минут</span></div>
+      <div class="cd"><span class="cd__num" id="cd-sec">00</span><span class="cd__unit" data-cfg="uSec">секунд</span></div>
+    </div>
+  </section>
+
+  <!-- ===== LOCATION ===== -->
+  <section class="section place reveal">
+    <p class="place__label" data-cfg="placeLabel">Мекен жайымыз</p>
+    <h3 class="place__venue" data-cfg="venueName">Otyrar мейрамханасы</h3>
+    <p class="place__address" data-cfg="venueAddress">Семей қаласы, Сорокина көшесі, 42</p>
+    <a class="btn btn--map" id="mapLink" href="#" target="_blank" rel="noopener">
+      <span class="btn__pin">📍</span><span data-cfg="mapText">2GIS-те ашу</span>
+    </a>
+  </section>
+
+  <!-- ===== HOSTS ===== -->
+  <section class="section hosts reveal">
+    <p class="hosts__label" data-cfg="hostsLabel">Той иелері</p>
+    <p class="hosts__names" data-cfg="hostsLine1">Шарбан апа</p>
+    <p class="hosts__names" data-cfg="hostsLine2">Бағдат &amp; Сауле</p>
+    <p class="hosts__note" data-cfg="hostsNote">
+      Қызымыздың өмір жолындағы маңызды сәтке арналған салтанатты
+      кешіміздің қонағы болыңыз!
+    </p>
+  </section>
+
+  <!-- ===== RSVP ===== -->
+  <section class="section rsvp reveal">
+    <p class="rsvp__label" data-cfg="rsvpLabel">Сауалнама</p>
+    <p class="rsvp__desc" data-cfg="rsvpDesc">
+      Төмендегі сауалнаманы толтырып, тойға қатысуыңызды растауыңызды сұраймыз:
+    </p>
+
+    <form id="rsvpForm" class="rsvp__form">
+      <input class="rsvp__input" id="guestName" type="text" placeholder="Аты-жөні" required />
+      <p class="rsvp__hint" data-cfg="coupleHint">
+        Жұбайыңызбен келсеңіз, есімдеріңізді бірге жаза кетіңіз
+      </p>
+
+      <div class="rsvp__options">
+        <label class="opt">
+          <input type="radio" name="attend" value="Иә, келемін" required />
+          <span data-cfg="optYes">Иә, келемін</span>
+        </label>
+        <label class="opt">
+          <input type="radio" name="attend" value="Жұбайыммен келемін" />
+          <span data-cfg="optCouple">Жұбайыммен келемін</span>
+        </label>
+        <label class="opt">
+          <input type="radio" name="attend" value="Өкінішке орай, келе алмаймын" />
+          <span data-cfg="optNo">Өкінішке орай, келе алмаймын</span>
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn--full" data-cfg="submitText">Жауапты жіберу</button>
+    </form>
+  </section>
+
+  <!-- ===== TILEK ===== -->
+  <section class="section tilek reveal">
+    <p class="tilek__label" data-cfg="tilekLabel">Жастарға тілек</p>
+    <div class="tilek__card" id="tilekCard">
+      <p id="tilekText" data-cfg="tilekStart">Тілек ашу үшін басыңыз</p>
+    </div>
+    <button class="btn btn--soft" id="tilekBtn" type="button" data-cfg="tilekBtnText">Тілек ашу</button>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer reveal">
+    <div class="footer__divider">❀</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
