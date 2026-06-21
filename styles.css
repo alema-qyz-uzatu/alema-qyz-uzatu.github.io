@@ -251,18 +251,6 @@ body{
 .thanks__title{font-family:var(--serif);font-size:2rem;color:var(--gold-deep);margin-bottom:.5rem}
 .thanks__text{color:var(--muted);font-size:1.02rem;line-height:1.6}
 
-/* ===== Tilek ===== */
-.tilek__label{font-size:.8rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem}
-.tilek__card{
-  background:var(--bg-card);border:1px solid var(--line);border-radius:18px;
-  padding:2rem 1.6rem;max-width:30rem;margin:0 auto;min-height:5.5rem;
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--serif);font-size:1.35rem;color:var(--ink);line-height:1.5;
-  box-shadow:0 8px 26px rgba(169,120,108,.1);transition:transform .25s;
-}
-.tilek__card.is-flip{animation:flip .5s ease}
-@keyframes flip{0%{transform:rotateX(90deg);opacity:0}100%{transform:rotateX(0);opacity:1}}
-
 /* ===== Music toggle ===== */
 .music-toggle{
   position:fixed;top:1rem;right:1rem;z-index:50;

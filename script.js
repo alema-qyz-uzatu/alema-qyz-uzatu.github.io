@@ -56,6 +56,7 @@ const CONFIG = {
   optYes:     "Иә, келемін",
   optCouple:  "Жұбайыммен келемін",
   optNo:      "Өкінішке орай, келе алмаймын",
+  countLabel: "Адам саны",
   submitText: "Жауапты жіберу",
   // Жауаптар Google-кестеге жазылады.
   // Apps Script "Web app" сілтемесін осы жерге қой (.../exec):
@@ -67,20 +68,6 @@ const CONFIG = {
   thanksNoTitle:   "Рақмет!",
   thanksNoText:    "Жауабыңыз үшін рақмет. Сізді сағынамыз!",
 
-  // --- Жастарға тілек (картаны басқанда кездейсоқ тілек шығады) ---
-  tilekLabel:   "Жастарға тілек",
-  tilekStart:   "Тілек ашу үшін басыңыз",
-  tilekBtnText: "Тілек ашу",
-  tilekList: [
-    "Ұзақ ғұмыр, баянды бақыт тілейміз!",
-    "Шаңырақтарың берекеге толсын!",
-    "Аман-есен, ынтымақты отбасы болсын!",
-    "Махаббаттарың мәңгілік болсын!",
-    "Бір жастықта кәрі болыңдар!",
-    "Үй іштерің ырыс-берекеге кенелсін!",
-    "Балалы-шағалы, бақытты болыңдар!",
-    "Қос жұлдыздай жарасып, төрт құбылаларың тең болсын!",
-  ],
 };
 
 /* =====================================================================
@@ -184,6 +171,25 @@ function showThanks(title, text) {
 }
 thanksEl.addEventListener("click", () => thanksEl.classList.remove("is-show"));
 
+// 6.1) Адам саны счётчигі
+let guests = 1;
+const guestCountEl = document.getElementById("guestCount");
+const countWrap = document.getElementById("countWrap");
+document.getElementById("plus").addEventListener("click", () => {
+  guests = Math.min(guests + 1, 20);
+  guestCountEl.textContent = guests;
+});
+document.getElementById("minus").addEventListener("click", () => {
+  guests = Math.max(guests - 1, 1);
+  guestCountEl.textContent = guests;
+});
+// "Келе алмаймын" таңдалса — санақты жасыру
+document.querySelectorAll('input[name="attend"]').forEach((r) => {
+  r.addEventListener("change", () => {
+    countWrap.style.display = r.value.includes("келе алмаймын") ? "none" : "flex";
+  });
+});
+
 document.getElementById("rsvpForm").addEventListener("submit", (e) => {
   e.preventDefault();
   const name = document.getElementById("guestName").value.trim();
@@ -198,29 +204,16 @@ document.getElementById("rsvpForm").addEventListener("submit", (e) => {
     showThanks(CONFIG.thanksNoTitle, CONFIG.thanksNoText);
   }
 
-  // Жауапты Google-кестеге жіберу
-  const body = new URLSearchParams({ name: name, attend: attend });
+  // Жауапты Google-кестеге жіберу (адам санын жауап мәтініне қосамыз)
+  const attendForSheet = coming ? `${attend} · ${guests} адам` : attend;
+  const body = new URLSearchParams({ name: name, attend: attendForSheet });
   fetch(CONFIG.sheetUrl, { method: "POST", mode: "no-cors", body: body }).catch(() => {});
 
   e.target.reset();
+  guests = 1;
+  guestCountEl.textContent = guests;
+  countWrap.style.display = "flex";
 });
-
-// 6.1) Жастарға тілек
-const tilekText = document.getElementById("tilekText");
-const tilekCard = document.getElementById("tilekCard");
-let lastTilek = -1;
-function openTilek() {
-  let i;
-  do { i = Math.floor((performance.now() * 7) % CONFIG.tilekList.length); }
-  while (i === lastTilek && CONFIG.tilekList.length > 1);
-  lastTilek = i;
-  tilekText.textContent = CONFIG.tilekList[i];
-  tilekCard.classList.remove("is-flip");
-  void tilekCard.offsetWidth; // reflow → анимацияны қайта қосу
-  tilekCard.classList.add("is-flip");
-}
-document.getElementById("tilekBtn").addEventListener("click", openTilek);
-tilekCard.addEventListener("click", openTilek);
 
 // 7) Музыка
 const music = document.getElementById("bgMusic");
