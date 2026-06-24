@@ -53,6 +53,7 @@ const CONFIG = {
   rsvpLabel:  "Сауалнама",
   rsvpDesc:   "Төмендегі сауалнаманы толтырып, тойға қатысуыңызды растауыңызды сұраймыз:",
   coupleHint: "Жұбайыңызбен келсеңіз, есімдеріңізді бірге жаза кетіңіз",
+  partnerPlaceholder: "Жұбайыңыздың аты-жөні",
   optYes:     "Иә, келемін",
   optCouple:  "Жұбайыммен келемін",
   optNo:      "Өкінішке орай, келе алмаймын",
@@ -78,6 +79,12 @@ const CONFIG = {
 document.querySelectorAll("[data-cfg]").forEach((el) => {
   const key = el.getAttribute("data-cfg");
   if (CONFIG[key] != null) el.textContent = CONFIG[key];
+});
+
+// 1.1) Input placeholder'дерін CONFIG-тен қою
+document.querySelectorAll("[data-cfg-ph]").forEach((el) => {
+  const key = el.getAttribute("data-cfg-ph");
+  if (CONFIG[key] != null) el.setAttribute("placeholder", CONFIG[key]);
 });
 
 // 2) Карта сілтемесі
@@ -183,10 +190,13 @@ document.getElementById("minus").addEventListener("click", () => {
   guests = Math.max(guests - 1, 1);
   guestCountEl.textContent = guests;
 });
-// "Келе алмаймын" таңдалса — санақты жасыру
+// "Келе алмаймын" таңдалса — санақты жасыру; "Жұбайыммен" таңдалса — жұп ФИО өрісін көрсету
+const partnerWrap = document.getElementById("partnerWrap");
+const partnerNameEl = document.getElementById("partnerName");
 document.querySelectorAll('input[name="attend"]').forEach((r) => {
   r.addEventListener("change", () => {
     countWrap.style.display = r.value.includes("келе алмаймын") ? "none" : "flex";
+    partnerWrap.style.display = r.value.includes("Жұбайыммен") ? "block" : "none";
   });
 });
 
@@ -195,10 +205,15 @@ document.getElementById("rsvpForm").addEventListener("submit", (e) => {
   const name = document.getElementById("guestName").value.trim();
   const attend = document.querySelector('input[name="attend"]:checked')?.value || "";
   const coming = !attend.includes("келе алмаймын");
+  const withPartner = attend.includes("Жұбайыммен");
+  const partner = partnerNameEl.value.trim();
+
+  // Жұп ФИО-сын негізгі есімге қосамыз
+  const fullName = withPartner && partner ? `${name} және ${partner}` : name;
 
   if (coming) {
     burstConfetti();
-    const who = name ? name + ", " : "";
+    const who = fullName ? fullName + ", " : "";
     showThanks(CONFIG.thanksComeTitle, who + CONFIG.thanksComeText);
   } else {
     showThanks(CONFIG.thanksNoTitle, CONFIG.thanksNoText);
@@ -206,13 +221,14 @@ document.getElementById("rsvpForm").addEventListener("submit", (e) => {
 
   // Жауапты Google-кестеге жіберу (адам санын жауап мәтініне қосамыз)
   const attendForSheet = coming ? `${attend} · ${guests} адам` : attend;
-  const body = new URLSearchParams({ name: name, attend: attendForSheet });
+  const body = new URLSearchParams({ name: fullName, attend: attendForSheet });
   fetch(CONFIG.sheetUrl, { method: "POST", mode: "no-cors", body: body }).catch(() => {});
 
   e.target.reset();
   guests = 1;
   guestCountEl.textContent = guests;
   countWrap.style.display = "flex";
+  partnerWrap.style.display = "none";
 });
 
 // 7) Музыка

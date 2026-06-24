@@ -133,6 +133,7 @@ body{
   font-family:var(--sans);font-size:1rem;background:var(--bg-card);color:var(--ink);
 }
 .rsvp__input:focus{outline:none;border-color:var(--gold)}
+.rsvp__partner .rsvp__input{width:100%;box-sizing:border-box}
 .rsvp__options{display:flex;flex-direction:column;gap:.6rem;text-align:left}
 .opt{
   display:flex;align-items:center;gap:.7rem;padding:.85rem 1.1rem;
